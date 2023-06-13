@@ -1,14 +1,23 @@
 {
   "name": "tiny-url",
-  "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "description": "Tiny URL Shortener",
   "main": "index.ts",
   "scripts": {
-    "start": "tsx index.ts"
+    "build": "esbuild index.ts --bundle --platform=node --target=node18 --outdir=dist"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.350.0",
+    "nanoid": "^4.0.2",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/aws-lambda": "8.10.117",
     "@types/node": "^20.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
+    "esbuild": "^0.18.1",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
