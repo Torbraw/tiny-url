@@ -18,9 +18,10 @@ You can refer to the [What's missing / What can be improved](#whats-missing--wha
 
 ### What's included
 
-- A s3 bucket that host a static website with public read access and a 7 days lifecycle policy.
+- A S3 bucket that host a static website with public read access and a 7 days lifecycle policy.
 - A basic http api gateway with a single POST endpoint that call a lambda function.
-- A lambda function that takes a url as input and return a link to a s3 object that redirect to the original url.
+- A lambda function that takes an url as a input, validated by a zod schema, and return a link to a S3 object that redirect to the original url.
+The S3 key is validated to make sure that it is not overwriting anything.
 - All created by terraform.
 
 ### How it works
