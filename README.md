@@ -1,6 +1,6 @@
 # tiny-url
 
-Application to shorten urls that is meant to be deployed to AWS. Inspired by [this article](https://aws.amazon.com/blogs/compute/build-a-serverless-private-url-shortener/).
+Serverless AWS application to shorten urls. Inspired by [this article](https://aws.amazon.com/blogs/compute/build-a-serverless-private-url-shortener/).
 
 ## Disclaimer
 
