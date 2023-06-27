@@ -4,10 +4,11 @@ resource "aws_apigatewayv2_api" "api_gateway" {
 }
 
 resource "aws_apigatewayv2_integration" "tiny_url_integration" {
-  api_id             = aws_apigatewayv2_api.api_gateway.id
-  integration_type   = "AWS_PROXY"
-  integration_method = "POST"
-  integration_uri    = aws_lambda_function.tiny_url_lambda.invoke_arn
+  api_id                 = aws_apigatewayv2_api.api_gateway.id
+  payload_format_version = "2.0"
+  integration_type       = "AWS_PROXY"
+  integration_method     = "POST"
+  integration_uri        = aws_lambda_function.tiny_url_lambda.invoke_arn
 }
 
 resource "aws_apigatewayv2_route" "tiny_url_route" {
@@ -34,7 +35,7 @@ resource "aws_apigatewayv2_deployment" "api_gateway_deployment" {
 
 resource "aws_apigatewayv2_stage" "api_gateway_stage" {
   api_id = aws_apigatewayv2_api.api_gateway.id
-  name   = "api-gateway-stage"
+  name   = "v1"
 
   deployment_id = aws_apigatewayv2_deployment.api_gateway_deployment.id
 }

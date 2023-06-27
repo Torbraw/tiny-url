@@ -41,13 +41,19 @@ data "aws_iam_policy_document" "tiny_url_bucket_policy_document" {
 resource "aws_s3_bucket_policy" "tiny_url_bucket_policy" {
   bucket = aws_s3_bucket.tiny_url_bucket.id
   policy = data.aws_iam_policy_document.tiny_url_bucket_policy_document.json
+
+  depends_on = [
+    aws_s3_bucket.tiny_url_bucket,
+    aws_s3_bucket_public_access_block.tiny_url_bucket_access_block,
+    data.aws_iam_policy_document.tiny_url_bucket_policy_document,
+  ]
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "tiny_url_bucket_lifecycle_configuration" {
   bucket = aws_s3_bucket.tiny_url_bucket.id
 
   rule {
-    id = "delete-after-seven-days"
+    id     = "delete-after-seven-days"
     status = "Enabled"
     filter {}
     expiration {

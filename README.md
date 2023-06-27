@@ -39,7 +39,13 @@ S3 bucket that have static website hosting enable have the ability to treat obje
 - Run `terraform init` to initialize terraform
 - Run `terraform apply` to create the AWS ressources
   - If you have an error that says the s3 bucket already exists, change the bucket name in the `s3.tf` file (line 2) and run `terraform apply` again. S3 bucket name are unique across AWS.
-- Find the url of your api gateway in AWS and call the `API_GATEWAY_URL/tiny-url` endpoint with a POST request and a body like this: `{ "url": "https://www.google.com" }`
+- For some reason terraform doesn't deploy the api gateway integration correctly, so will do it manually.
+  - Enter into the API Gateway console in AWS and click on `http-api-gateway` in the api list.
+  - On the left panel, click on `Integrations`. You should already be on the `POST` route, if not, click on `POST` in the routes panel.
+  - Click the `Manage integration` button in the `Integration details for route` panel.
+  - Click on the `Edit` button in the `Integration details` panel.
+  - Simply hit the `Save` button in the `Edit integration` panel without changing anything.
+- Find the url of your api gateway stage in AWS and call the `API_GATEWAY_URL/tiny-url` endpoint with a POST request and a body like this: `{ "url": "https://www.google.com" }`
 - You should get a response like this: `{ "url": "http://tiny-url-bucket-dev.s3-website-us-east-1.amazonaws.com/gG_n2" }`
 - Go to the url you got in the response and you should be redirected to the original url.
 - When you are done, delete all the files in your s3 bucket then run `terraform destroy` to destroy the AWS ressources.

@@ -61,9 +61,9 @@ resource "aws_lambda_function" "tiny_url_lambda" {
 
   environment {
     variables = {
-      region    = var.aws_region,
-      logLevel = var.aws_log_level,
-      bucketName = aws_s3_bucket.tiny_url_bucket.id
+      region         = var.aws_region,
+      logLevel       = var.aws_log_level,
+      bucketName     = aws_s3_bucket.tiny_url_bucket.id
       staticEndpoint = aws_s3_bucket_website_configuration.tiny_url_bucket_website_configuration.website_endpoint
     }
   }

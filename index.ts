@@ -26,7 +26,6 @@ type ReturnType = {
   headers: { [key: string]: string };
   body: string;
   isBase64Encoded: boolean;
-  multiValueHeaders?: { [key: string]: string[] };
 };
 
 const s3Client = new S3Client({ region: region });
